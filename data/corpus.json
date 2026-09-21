@@ -1,0 +1,66 @@
+{
+  "source": "Applied AI Lab corpus. Curated from 21 Sep 2026 LinkedIn digest. Not a production index.",
+  "acl": "public-demo",
+  "chunks": [
+    {
+      "id": "rag-01",
+      "title": "Production RAG is two pipelines",
+      "acl": "public",
+      "text": "Production RAG is not a notebook with a vector database attached. Keep an offline index pipeline separate from the online query pipeline. Treat index promotion like a release. Hybrid search plus rerank happens before generation. Golden eval and traces are first class, not afterthoughts."
+    },
+    {
+      "id": "rag-02",
+      "title": "Never embed what a user cannot see",
+      "acl": "public",
+      "text": "Keep config, prompts, secrets, raw data, and indexes out of application code. Chunk-level ACL belongs in retrieval. Never embed a document the user is not allowed to see. Auth and PII redaction sit next to the serving API, not inside the indexer."
+    },
+    {
+      "id": "rag-03",
+      "title": "Chunking and hybrid retrieval",
+      "acl": "public",
+      "text": "Chunk size changes retrieval. Too large and the vector mixes topics. Too small and you lose the answer. Strategy should follow document type: parent-child, token limits, tables, HTML. Hybrid search combines dense vectors with BM25 lexical matching, then a cross-encoder reranks the shortlist."
+    },
+    {
+      "id": "inf-01",
+      "title": "An LLM emits one token",
+      "acl": "public",
+      "text": "An LLM does not generate a sentence. It generates one token at a time. Prefill processes the prompt in parallel and is compute bound. Decode generates one token at a time and is memory bound. The KV cache stores prior key and value pairs so the model does not recompute the whole sequence."
+    },
+    {
+      "id": "inf-02",
+      "title": "Inference pipeline",
+      "acl": "public",
+      "text": "The inference path is tokenizer, embedding, transformer blocks with multi-head attention, linear plus softmax over vocabulary, sampling, optional speculative decoding, detokenizer, then streaming output. FlashAttention fuses attention ops to cut HBM reads. INT8 and INT4 quantization shrink weight memory."
+    },
+    {
+      "id": "inf-03",
+      "title": "Engines and hardware",
+      "acl": "public",
+      "text": "vLLM is the general purpose high-throughput server. SGLang shines when requests share context: multi-turn chat, tool calls, RAG. llama.cpp is the CPU and edge default. GPU limits are streaming multiprocessors, HBM versus SRAM, memory bandwidth, and FLOPS. Decode is usually memory bound, not compute bound."
+    },
+    {
+      "id": "int-01",
+      "title": "Interview fundamentals",
+      "acl": "public",
+      "text": "Frameworks write code and scaffold a project. They cannot replace understanding. If retrieval quality drops, latency climbs, hallucinations rise, or an agent loops, another framework will not fix it. Revise transformers, attention, embeddings, tokenization, vector search, RAG evaluation, HTTP APIs, system design, memory, databases, and Python."
+    },
+    {
+      "id": "int-02",
+      "title": "Questions that expose the gap",
+      "acl": "public",
+      "text": "Why do embeddings work. How does chunk size affect retrieval. Why is attention important. What happens before an LLM generates its first token. Those questions test the work under the API, not the wrapper name."
+    },
+    {
+      "id": "ast-01",
+      "title": "GPT-6 Astra, dated",
+      "acl": "public",
+      "text": "GPT-6 Astra is a real OpenAI model announced 3 Sep 2026. It is positioned as a computer-use and agentic operator, not a chatbot. Official context window is 1,050,000 tokens. It is the first OpenAI model at Critical cybersecurity preparedness. Measure agents by finished real-world tasks, not chat quality. LinkedIn bench cards are packaging, not a system card."
+    },
+    {
+      "id": "sec-01",
+      "title": "Private ACL fixture",
+      "acl": "restricted",
+      "text": "This chunk is marked restricted. A production retriever must drop it for users without clearance. The demo uses it to show ACL filtering. Secret rotation keys and payroll notes would live here in a real system."
+    }
+  ]
+}
